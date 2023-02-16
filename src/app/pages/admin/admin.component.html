@@ -1,0 +1,111 @@
+<div nz-col>
+  <nz-table #basicTable [nzData]="cards">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Number</th>
+        <th>CVC</th>
+        <th>ExpiryMonth</th>
+        <th>ExpiryYear</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let card of basicTable.nzData">
+      <tr>
+        <td>{{ card.id }}</td>
+        <td>{{ card.cardholderName }}</td>
+        <td>{{ card.cardNumber }}</td>
+        <td>{{ card.cvc }}</td>
+        <td>{{ card.expiryMonth }}</td>
+        <td>{{ card.expiryYear }}</td>
+        <td>
+          <a (click)="populateForm(card)">Update</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="deleteCard(card.id)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<div nz-col>
+  <form #form="ngForm" nz-form (ngSubmit)="onSubmit()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3" nzFor="holderName">Holder Name</nz-form-label>
+      <nz-form-control [nzSpan]="21">
+        <input
+          nz-input
+          type="text"
+          id="holderName"
+          name="holderName"
+          [(ngModel)]="card.cardholderName"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3" nzFor="cardNumber"
+        >Card Number
+      </nz-form-label>
+      <nz-form-control [nzSpan]="21">
+        <input
+          nz-input
+          type="text"
+          id="cardNumber"
+          name="cardNumber"
+          [(ngModel)]="card.cardNumber"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3" nzFor="cvc">CVC</nz-form-label>
+      <nz-form-control [nzSpan]="21">
+        <input
+          nz-input
+          type="text"
+          id="cvc"
+          name="cvc"
+          [(ngModel)]="card.cvc"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3" nzFor="expiryMonth"
+        >Expiry Month</nz-form-label
+      >
+      <nz-form-control [nzSpan]="21">
+        <input
+          nz-input
+          type="text"
+          id="expiryMonth"
+          name="expiryMonth"
+          [(ngModel)]="card.expiryMonth"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3" nzFor="expiryYear">Expiry Year</nz-form-label>
+      <nz-form-control [nzSpan]="21">
+        <input
+          nz-input
+          type="text"
+          id="expiryYear"
+          name="expiryYear"
+          [(ngModel)]="card.expiryYear"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzSpan="4" nzOffset="3">
+        <button nz-button nzType="primary">Create/Update</button>
+      </nz-form-control>
+      <nz-form-control nzSpan="4">
+        <a (click)="clearCard()" nz-button nzType="primary">Clear</a>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

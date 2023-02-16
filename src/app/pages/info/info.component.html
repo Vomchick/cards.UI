@@ -1,22 +1,27 @@
-<nz-table #basicTable [nzData]="dataSet">
+<nz-table #basicTable [nzData]="cards">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Name</th>
-      <th>Age</th>
-      <th>Address</th>
-      <th>Action</th>
+      <th>Number</th>
+      <th>CVC</th>
+      <th>ExpiryMonth</th>
+      <th>ExpiryYear</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of basicTable.data">
-      <td>{{ data.name }}</td>
-      <td>{{ data.age }}</td>
-      <td>{{ data.address }}</td>
-      <td>
+    <tr *ngFor="let card of basicTable.nzData">
+      <td>{{ card.id }}</td>
+      <td>{{ card.cardholderName }}</td>
+      <td>{{ card.cardNumber }}</td>
+      <td>{{ card.cvc }}</td>
+      <td>{{ card.expiryMonth }}</td>
+      <td>{{ card.expiryYear }}</td>
+      <!--<td>
         <a>Action 一 {{ data.name }}</a>
         <nz-divider nzType="vertical"></nz-divider>
         <a>Delete</a>
-      </td>
+      </td>-->
     </tr>
   </tbody>
 </nz-table>
