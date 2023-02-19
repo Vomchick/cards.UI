@@ -14,6 +14,8 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { InfoModule } from './pages/info/info.module';
 import { AdminModule } from './pages/admin/admin.module';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { AuthenticationModule } from './pages/authentication/authentication.module';
 
 registerLocaleData(en);
 
@@ -29,6 +31,8 @@ registerLocaleData(en);
     NzMenuModule,
     InfoModule,
     AdminModule,
+    NzGridModule,
+    AuthenticationModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

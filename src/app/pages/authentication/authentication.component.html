@@ -1,0 +1,6 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+  <input type="email" name="email" [(ngModel)]="user.email" />
+  <input type="password" name="password" [(ngModel)]="user.password" />
+  <button>Войти</button>
+</form>
+<button (click)="onLogout()">Выйти</button>

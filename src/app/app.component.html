@@ -2,9 +2,10 @@
   <nz-layout>
     <nz-header>
       <div class="logo"></div>
-      <ul nz-menu nzTheme="dark" nzMode="horizontal">
+      <ul nz-menu nz-row nzTheme="dark" nzMode="horizontal">
+        <li nz-menu-item routerLink="login">Login</li>
         <li nz-menu-item routerLink="info">Info</li>
-        <li nz-menu-item routerLink="admin">Admin</li>
+        <li *ngIf="isAdmin()" nz-menu-item routerLink="admin">Admin</li>
       </ul>
     </nz-header>
     <nz-content>
