@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
@@ -12,7 +11,7 @@ export class AuthService {
 
   login(user: User) {
     //this.http.post()
-    if (user.email == 'admin' && user.password == 'admin') {
+    if (user.userName === 'admin' && user.password === 'admin') {
       localStorage.setItem('_auth', 'admin');
     }
   }

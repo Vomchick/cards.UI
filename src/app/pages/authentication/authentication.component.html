@@ -1,6 +1,57 @@
-<form #form="ngForm" (ngSubmit)="onSubmit()">
-  <input type="email" name="email" [(ngModel)]="user.email" />
-  <input type="password" name="password" [(ngModel)]="user.password" />
-  <button>Войти</button>
+<form nz-form #form="ngForm" class="login-form" (ngSubmit)="onSubmit()">
+  <h1 nz-typography class="centered">Login</h1>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Username!">
+      <nz-input-group nzPrefixIcon="user">
+        <input
+          type="text"
+          nz-input
+          name="userName"
+          placeholder="Username"
+          [(ngModel)]="user.userName"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Password!">
+      <nz-input-group nzPrefixIcon="lock">
+        <input
+          type="password"
+          nz-input
+          name="password"
+          placeholder="Password"
+          [(ngModel)]="user.password"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <!--<div nz-row class="login-form-margin">
+    <div nz-col [nzSpan]="12">
+      <label nz-checkbox formControlName="remember">
+        <span>Remember me</span>
+      </label>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <a class="login-form-forgot">Forgot password</a>
+    </div>
+  </div>-->
+  <button
+    nz-button
+    class="login-form-button login-form-margin"
+    [nzType]="'primary'"
+  >
+    Log in
+  </button>
+  <a
+    (click)="onLogout()"
+    nz-button
+    [nzType]="'primary'"
+    class="login-form-button login-form-margin"
+    nzDanger
+  >
+    Выйти
+  </a>
+  <!--Or
+  <a>register now!</a>-->
 </form>
-<button (click)="onLogout()">Выйти</button>

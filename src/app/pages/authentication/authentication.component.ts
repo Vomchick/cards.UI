@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class AuthenticationComponent implements OnInit {
   user: User = {
-    email: '',
+    userName: '',
     password: '',
   };
 
@@ -29,7 +29,7 @@ export class AuthenticationComponent implements OnInit {
 
   clearUser() {
     this.user = {
-      email: '',
+      userName: '',
       password: '',
     };
   }

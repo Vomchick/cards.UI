@@ -7,6 +7,7 @@ import { AdminComponent } from './admin.component';
 import { FormsModule } from '@angular/forms';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 @NgModule({
   declarations: [AdminComponent],
@@ -18,6 +19,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     FormsModule,
     NzGridModule,
     NzButtonModule,
+    NzInputModule,
   ],
 })
 export class AdminModule {}
