@@ -5,7 +5,7 @@
       <ul nz-menu nz-row nzTheme="dark" nzMode="horizontal">
         <li nz-menu-item routerLink="login">Login</li>
         <li nz-menu-item routerLink="info">Info</li>
-        <li *ngIf="isAdmin()" nz-menu-item routerLink="admin">Admin</li>
+        <li *ngIf="isLoggedIn()" nz-menu-item routerLink="admin">Admin</li>
       </ul>
     </nz-header>
     <nz-content>

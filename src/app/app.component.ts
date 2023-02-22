@@ -11,7 +11,7 @@ export class AppComponent {
 
   constructor(private authService: AuthService) {}
 
-  isAdmin(): boolean {
-    return this.authService.isAdmin();
+  isLoggedIn(): boolean {
+    return this.authService.isAuthenticated();
   }
 }

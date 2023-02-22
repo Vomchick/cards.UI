@@ -1,27 +1,32 @@
-<form nz-form #form="ngForm" class="login-form" (ngSubmit)="onSubmit()">
-  <h1 nz-typography class="centered">Login</h1>
+<form
+  nz-form
+  [formGroup]="loginForm"
+  class="login-form"
+  (ngSubmit)="onSubmit()"
+>
+  <h1 nz-typography class="centered">Log In</h1>
   <nz-form-item>
-    <nz-form-control nzErrorTip="Please input your Username!">
+    <nz-form-control nzErrorTip="Please input your Username">
       <nz-input-group nzPrefixIcon="user">
         <input
           type="text"
           nz-input
-          name="userName"
+          formControlName="userName"
           placeholder="Username"
-          [(ngModel)]="user.userName"
         />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-control nzErrorTip="Please input your Password!">
+    <nz-form-control
+      nzErrorTip="Minimum eight characters, at least one letter and one number"
+    >
       <nz-input-group nzPrefixIcon="lock">
         <input
           type="password"
           nz-input
-          name="password"
+          formControlName="password"
           placeholder="Password"
-          [(ngModel)]="user.password"
         />
       </nz-input-group>
     </nz-form-control>
@@ -50,7 +55,7 @@
     class="login-form-button login-form-margin"
     nzDanger
   >
-    Выйти
+    Log out
   </a>
   <!--Or
   <a>register now!</a>-->

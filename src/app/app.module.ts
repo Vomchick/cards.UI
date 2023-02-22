@@ -18,7 +18,12 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { AuthenticationModule } from './pages/authentication/authentication.module';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { JwtModule } from '@auth0/angular-jwt';
+import { access_token_key } from './service/auth.service';
 
+export function tokenGetter() {
+  return localStorage.getItem(access_token_key);
+}
 registerLocaleData(en);
 
 @NgModule({
@@ -37,6 +42,12 @@ registerLocaleData(en);
     AuthenticationModule,
     NzFormModule,
     FormsModule,
+
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+      },
+    }),
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
