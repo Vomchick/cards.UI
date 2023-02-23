@@ -8,6 +8,7 @@ import { AuthService } from './service/auth.service';
 })
 export class AppComponent {
   isCollapsed = false;
+  title = 'Cards';
 
   constructor(private authService: AuthService) {}
 

@@ -4,7 +4,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { AdminComponent } from './admin.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -20,6 +20,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzGridModule,
     NzButtonModule,
     NzInputModule,
+    ReactiveFormsModule,
   ],
 })
 export class AdminModule {}

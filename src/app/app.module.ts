@@ -20,6 +20,8 @@ import { AuthenticationModule } from './pages/authentication/authentication.modu
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { JwtModule } from '@auth0/angular-jwt';
 import { access_token_key } from './service/auth.service';
+import { environment } from 'src/environments/environment.development';
+import { auth_api_url, cards_api_url } from './app-ijection-tokens';
 
 export function tokenGetter() {
   return localStorage.getItem(access_token_key);
@@ -46,10 +48,15 @@ registerLocaleData(en);
     JwtModule.forRoot({
       config: {
         tokenGetter,
+        allowedDomains: ['localhost:7133'],
       },
     }),
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US },
+    { provide: auth_api_url, useValue: environment.authApi },
+    { provide: cards_api_url, useValue: environment.cardsApi },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

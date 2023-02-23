@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormControl,
-  FormGroup,
   UntypedFormBuilder,
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
-import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -16,18 +13,14 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class AuthenticationComponent implements OnInit {
   loginForm!: UntypedFormGroup;
-  user: User = {
-    userName: '',
-    password: '',
-  };
 
   constructor(
     private authService: AuthService,
-    private fb: UntypedFormBuilder
+    private ufb: UntypedFormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
+    this.loginForm = this.ufb.group({
       userName: [null, [Validators.required, Validators.maxLength(20)]],
       password: [
         null,
@@ -41,7 +34,12 @@ export class AuthenticationComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
+      this.authService.login(this.loginForm.value).subscribe(
+        (res) => {},
+        (error) => {
+          alert('Wrong Username or password');
+        }
+      );
     } else {
       Object.values(this.loginForm.controls).forEach((control) => {
         if (control.invalid) {
@@ -57,12 +55,5 @@ export class AuthenticationComponent implements OnInit {
 
   onLogout() {
     this.authService.logout();
-  }
-
-  clearUser() {
-    this.user = {
-      userName: '',
-      password: '',
-    };
   }
 }

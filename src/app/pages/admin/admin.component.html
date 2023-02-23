@@ -30,72 +30,72 @@
 </div>
 
 <div nz-col>
-  <form #form="ngForm" nz-form (ngSubmit)="onSubmit()">
+  <form [formGroup]="adminForm" nz-form (ngSubmit)="onSubmit()">
     <nz-form-item>
-      <nz-form-label [nzSpan]="3" nzFor="holderName">Holder Name</nz-form-label>
-      <nz-form-control [nzSpan]="21">
-        <input
-          nz-input
-          type="text"
-          id="holderName"
-          name="holderName"
-          [(ngModel)]="card.cardholderName"
-        />
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label [nzSpan]="3" nzFor="cardNumber"
-        >Card Number
-      </nz-form-label>
-      <nz-form-control [nzSpan]="21">
-        <input
-          nz-input
-          type="text"
-          id="cardNumber"
-          name="cardNumber"
-          [(ngModel)]="card.cardNumber"
-        />
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label [nzSpan]="3" nzFor="cvc">CVC</nz-form-label>
-      <nz-form-control [nzSpan]="21">
-        <input
-          nz-input
-          type="text"
-          id="cvc"
-          name="cvc"
-          [(ngModel)]="card.cvc"
-        />
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label [nzSpan]="3" nzFor="expiryMonth"
-        >Expiry Month</nz-form-label
+      <nz-form-label [nzSpan]="3" nzRequired nzFor="holderName"
+        >Holder Name</nz-form-label
       >
       <nz-form-control [nzSpan]="21">
         <input
           nz-input
           type="text"
-          id="expiryMonth"
-          name="expiryMonth"
-          [(ngModel)]="card.expiryMonth"
+          id="holderName"
+          formControlName="holderName"
         />
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label [nzSpan]="3" nzFor="expiryYear">Expiry Year</nz-form-label>
+      <nz-form-label [nzSpan]="3" nzFor="cardNumber" nzRequired
+        >Card Number
+      </nz-form-label>
+      <nz-form-control
+        [nzSpan]="21"
+        nzErrorTip="Card number must be 16-digit number"
+      >
+        <input
+          nz-input
+          type="text"
+          id="cardNumber"
+          formControlName="cardNumber"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3" nzRequired nzFor="cvc">CVC</nz-form-label>
+      <nz-form-control [nzSpan]="21" nzErrorTip="CVC must be 3-digit number">
+        <input nz-input type="text" id="cvc" formControlName="cvc" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3" nzRequired nzFor="expiryMonth"
+        >Expiry Month</nz-form-label
+      >
+      <nz-form-control
+        [nzSpan]="21"
+        nzErrorTip="Expiry month need to be a number below 13"
+      >
+        <input
+          nz-input
+          type="text"
+          id="expiryMonth"
+          formControlName="expiryMonth"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3" nzRequired nzFor="expiryYear"
+        >Expiry Year</nz-form-label
+      >
       <nz-form-control [nzSpan]="21">
         <input
           nz-input
           type="text"
           id="expiryYear"
-          name="expiryYear"
-          [(ngModel)]="card.expiryYear"
+          formControlName="expiryYear"
         />
       </nz-form-control>
     </nz-form-item>
@@ -104,7 +104,7 @@
         <button nz-button nzType="primary">Create/Update</button>
       </nz-form-control>
       <nz-form-control nzSpan="4">
-        <a (click)="clearCard()" nz-button nzType="primary">Clear</a>
+        <a nz-button nzType="primary">Clear</a>
       </nz-form-control>
     </nz-form-item>
   </form>
