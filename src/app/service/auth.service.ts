@@ -23,15 +23,16 @@ export class AuthService {
   login(userInfo: { userName: string; password: string }): Observable<Token> {
     return this.http.post<Token>(this.apiUrl + 'api/auth/login', userInfo).pipe(
       tap((token) => {
-        debugger;
         localStorage.setItem(access_token_key, token.access_token);
       })
     );
   }
 
   isAuthenticated(): boolean {
-    debugger;
     var token = localStorage.getItem(access_token_key);
+    if (this.jwtHelper.isTokenExpired(token)) {
+      localStorage.removeItem(access_token_key);
+    }
     return !!token && !this.jwtHelper.isTokenExpired(token);
   }
 

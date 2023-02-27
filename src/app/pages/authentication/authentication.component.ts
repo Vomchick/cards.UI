@@ -4,6 +4,8 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -16,7 +18,8 @@ export class AuthenticationComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private ufb: UntypedFormBuilder
+    private ufb: UntypedFormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,9 +38,13 @@ export class AuthenticationComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe(
-        (res) => {},
+        (res) => {
+          this.router.navigate(['admin']);
+        },
         (error) => {
-          alert('Wrong Username or password');
+          alert(
+            'Something went wrong. Check your password and username or try later'
+          );
         }
       );
     } else {

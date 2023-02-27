@@ -8,7 +8,7 @@ import { Card } from '../models/card.model';
   providedIn: 'root',
 })
 export class CardsService {
-  private cardsApi = this.apiUrl + 'api/cards';
+  private cardsApi = this.apiUrl + 'api/Cards';
 
   constructor(
     private http: HttpClient,
@@ -22,7 +22,7 @@ export class CardsService {
 
   addCard(cardInfo: {
     id: string;
-    holderName: string;
+    cardHolderName: string;
     cardNumber: string;
     cvc: string;
     expiryMonth: string;
@@ -36,7 +36,7 @@ export class CardsService {
     return this.http.delete<Card>(this.cardsApi + '/' + id);
   }
 
-  updateCard(card: Card): Observable<Card> {
-    return this.http.put<Card>(this.cardsApi + '/' + card.id, card);
+  updateCard(card: Card, cardId: string): Observable<Card> {
+    return this.http.put<Card>(this.cardsApi + '/' + cardId, card);
   }
 }

@@ -17,13 +17,9 @@ export class AdminComponent implements OnInit {
 
   title = 'cards';
   cards: Card[] = [];
-  card: Card = {
-    id: '',
-    cardholderName: '',
-    cardNumber: '',
-    expiryMonth: '',
-    expiryYear: '',
-    cvc: '',
+  updatableCard = {
+    update: false,
+    cardId: '',
   };
 
   constructor(
@@ -33,7 +29,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.adminForm = this.ufb.group({
-      holderName: [null, [Validators.required]],
+      cardholderName: [null, [Validators.required]],
       cardNumber: [null, [Validators.required, Validators.pattern(/^\d{16}$/)]],
       cvc: [null, [Validators.required, Validators.pattern(/^\d{3}$/)]],
       expiryMonth: [
@@ -51,42 +47,20 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (this.adminForm.valid) {
-      this.cardsService.addCard(this.adminForm.value).subscribe((res) => {
-        console.log(res);
-        this.getAllCards();
-      });
-    } else {
-      Object.values(this.adminForm.controls).forEach((control) => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
-    }
-    /*if (this.card.id === '') {
-      this.cardsService.addCard(this.card).subscribe((response) => {
-        this.getAllCards();
-        //this.clearCard();
-      });
-    } else {
-      this.updateCard(this.card);
-    }*/
+  clearAdminForm() {
+    this.adminForm.patchValue({
+      cardholderName: null,
+      cardNumber: null,
+      cvc: null,
+      expiryMonth: null,
+      expiryYear: null,
+    });
+    this.updatableCard.update = false;
+    this.updatableCard.cardId = '';
   }
 
   deleteCard(id: string) {
     this.cardsService.deleteCard(id).subscribe((response) => {
-      this.getAllCards();
-    });
-  }
-
-  populateForm(card: Card) {
-    this.card = card;
-  }
-
-  updateCard(card: Card) {
-    this.cardsService.updateCard(card).subscribe((response) => {
       this.getAllCards();
     });
   }

@@ -1,0 +1,111 @@
+<button
+  nz-button
+  nzType="dashed"
+  class="add-button"
+  (click)="showModalMiddle()"
+>
+  <span nz-icon nzType="plus"></span>
+  Create new card
+</button>
+
+<nz-modal
+  [(nzVisible)]="isVisibleMiddle"
+  nzTitle="Create Card"
+  nzCentered
+  [nzFooter]="null"
+  (nzOnCancel)="handleCancelMiddle()"
+>
+  <ng-container *nzModalContent>
+    <form [formGroup]="addForm" nz-form (ngSubmit)="onSubmit()">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="cardholderName"
+          >Holder Name</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          nzErrorTip="Holder Name is required field"
+        >
+          <input
+            nz-input
+            type="text"
+            id="cardholderName"
+            formControlName="cardholderName"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="cardNumber" nzRequired
+          >Card Number
+        </nz-form-label>
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          nzErrorTip="Card number must be 16-digit number"
+        >
+          <input
+            nz-input
+            type="text"
+            id="cardNumber"
+            formControlName="cardNumber"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="cvc"
+          >CVC</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          nzErrorTip="CVC must be 3-digit number"
+        >
+          <input nz-input type="text" id="cvc" formControlName="cvc" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="expiryMonth"
+          >Expiry Month</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          nzErrorTip="Expiry month need to be a number below 13"
+        >
+          <input
+            nz-input
+            type="text"
+            id="expiryMonth"
+            formControlName="expiryMonth"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="expiryYear"
+          >Expiry Year</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          nzErrorTip="Expiry Year is required field"
+        >
+          <input
+            nz-input
+            type="text"
+            id="expiryYear"
+            formControlName="expiryYear"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+          <button nz-button nzType="primary">Create</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal>

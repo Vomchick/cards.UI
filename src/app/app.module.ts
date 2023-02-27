@@ -12,16 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { InfoModule } from './pages/info/info.module';
-import { AdminModule } from './pages/admin/admin.module';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzGridModule } from 'ng-zorro-antd/grid';
-import { AuthenticationModule } from './pages/authentication/authentication.module';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { JwtModule } from '@auth0/angular-jwt';
 import { access_token_key } from './service/auth.service';
 import { environment } from 'src/environments/environment.development';
 import { auth_api_url, cards_api_url } from './app-ijection-tokens';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 export function tokenGetter() {
   return localStorage.getItem(access_token_key);
@@ -38,12 +36,10 @@ registerLocaleData(en);
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
-    InfoModule,
-    AdminModule,
     NzGridModule,
-    AuthenticationModule,
     NzFormModule,
     FormsModule,
+    NzModalModule,
 
     JwtModule.forRoot({
       config: {
