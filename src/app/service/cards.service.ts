@@ -29,14 +29,20 @@ export class CardsService {
     expiryYear: string;
   }): Observable<Card> {
     cardInfo.id = '00000000-0000-0000-0000-000000000000';
-    return this.http.post<Card>(this.cardsApi, cardInfo);
+    return this.http.post<Card>(this.cardsApi, cardInfo, {
+      withCredentials: true,
+    });
   }
 
   deleteCard(id: string): Observable<Card> {
-    return this.http.delete<Card>(this.cardsApi + '/' + id);
+    return this.http.delete<Card>(this.cardsApi + '/' + id, {
+      withCredentials: true,
+    });
   }
 
   updateCard(card: Card, cardId: string): Observable<Card> {
-    return this.http.put<Card>(this.cardsApi + '/' + cardId, card);
+    return this.http.put<Card>(this.cardsApi + '/' + cardId, card, {
+      withCredentials: true,
+    });
   }
 }

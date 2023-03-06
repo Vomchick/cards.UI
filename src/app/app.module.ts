@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Inject, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,14 +16,11 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { JwtModule } from '@auth0/angular-jwt';
-import { access_token_key } from './service/auth.service';
 import { environment } from 'src/environments/environment.development';
 import { auth_api_url, cards_api_url } from './app-ijection-tokens';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { CookieService } from 'ngx-cookie-service';
 
-export function tokenGetter() {
-  return localStorage.getItem(access_token_key);
-}
 registerLocaleData(en);
 
 @NgModule({
@@ -41,17 +38,18 @@ registerLocaleData(en);
     FormsModule,
     NzModalModule,
 
-    JwtModule.forRoot({
+    /*JwtModule.forRoot({
       config: {
-        tokenGetter,
+        tokenGetter: 
         allowedDomains: ['localhost:7133'],
       },
-    }),
+    }),*/
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     { provide: auth_api_url, useValue: environment.authApi },
     { provide: cards_api_url, useValue: environment.cardsApi },
+    CookieService,
   ],
   bootstrap: [AppComponent],
 })

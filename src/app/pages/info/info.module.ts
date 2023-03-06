@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NzTableModule } from 'ng-zorro-antd/table';
-import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { InfoComponent } from './info.component';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 @NgModule({
   declarations: [InfoComponent],
-  imports: [CommonModule, NzTableModule, NzDividerModule],
+  imports: [CommonModule, NzCardModule, NzGridModule],
 })
 export class InfoModule {}

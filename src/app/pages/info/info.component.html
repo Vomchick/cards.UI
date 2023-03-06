@@ -1,27 +1,12 @@
-<nz-table #basicTable [nzData]="cards">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Number</th>
-      <th>CVC</th>
-      <th>ExpiryMonth</th>
-      <th>ExpiryYear</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let card of basicTable.nzData">
-      <td>{{ card.id }}</td>
-      <td>{{ card.cardholderName }}</td>
-      <td>{{ card.cardNumber }}</td>
-      <td>{{ card.cvc }}</td>
-      <td>{{ card.expiryMonth }}</td>
-      <td>{{ card.expiryYear }}</td>
-      <!--<td>
-        <a>Action 一 {{ data.name }}</a>
-        <nz-divider nzType="vertical"></nz-divider>
-        <a>Delete</a>
-      </td>-->
-    </tr>
-  </tbody>
-</nz-table>
+<div style="padding: 30px">
+  <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+    <div *ngFor="let card of cards" nz-col [nzSpan]="6">
+      <nz-card nzTitle="{{ card.cardholderName }}">
+        <p>{{ card.cardNumber }}</p>
+        <p>{{ card.cvc }}</p>
+        <p>{{ card.expiryMonth }}</p>
+        <p>{{ card.expiryYear }}</p>
+      </nz-card>
+    </div>
+  </div>
+</div>

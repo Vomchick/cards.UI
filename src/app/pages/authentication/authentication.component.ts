@@ -37,16 +37,17 @@ export class AuthenticationComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe(
-        (res) => {
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (res) => {
           this.router.navigate(['admin']);
         },
-        (error) => {
+        error: (err) => {
           alert(
             'Something went wrong. Check your password and username or try later'
           );
-        }
-      );
+          console.log(err);
+        },
+      });
     } else {
       Object.values(this.loginForm.controls).forEach((control) => {
         if (control.invalid) {
