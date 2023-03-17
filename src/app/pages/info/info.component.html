@@ -1,5 +1,5 @@
 <div style="padding: 30px">
-  <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+  <div nz-row [nzGutter]="[16, 16]">
     <div *ngFor="let card of cards" nz-col [nzSpan]="6">
       <nz-card nzTitle="{{ card.cardholderName }}">
         <p>{{ card.cardNumber }}</p>

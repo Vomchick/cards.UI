@@ -17,7 +17,7 @@ export class CardsService {
 
   // Get all cards
   getAllCards(): Observable<Card[]> {
-    return this.http.get<Card[]>(this.cardsApi);
+    return this.http.get<Card[]>(this.cardsApi, { withCredentials: true });
   }
 
   addCard(cardInfo: {
@@ -29,20 +29,14 @@ export class CardsService {
     expiryYear: string;
   }): Observable<Card> {
     cardInfo.id = '00000000-0000-0000-0000-000000000000';
-    return this.http.post<Card>(this.cardsApi, cardInfo, {
-      withCredentials: true,
-    });
+    return this.http.post<Card>(this.cardsApi, cardInfo);
   }
 
   deleteCard(id: string): Observable<Card> {
-    return this.http.delete<Card>(this.cardsApi + '/' + id, {
-      withCredentials: true,
-    });
+    return this.http.delete<Card>(this.cardsApi + '/' + id);
   }
 
   updateCard(card: Card, cardId: string): Observable<Card> {
-    return this.http.put<Card>(this.cardsApi + '/' + cardId, card, {
-      withCredentials: true,
-    });
+    return this.http.put<Card>(this.cardsApi + '/' + cardId, card);
   }
 }

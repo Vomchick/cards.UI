@@ -1,11 +1,49 @@
 <nz-layout class="app-layout">
   <nz-layout>
     <nz-header>
-      <div class="logo"></div>
       <ul nz-menu nz-row nzTheme="dark" nzMode="horizontal">
-        <li nz-menu-item routerLink="login">Login</li>
-        <li nz-menu-item routerLink="info">Info</li>
-        <li *ngIf="isLoggedIn()" nz-menu-item routerLink="admin">Admin</li>
+        <li
+          *ngIf="!isLoggedIn()"
+          nz-menu-item
+          routerLink="login"
+          [nzSelected]="isLoginPage()"
+          nz-col
+          [nzSpan]="2"
+          [nzPush]="22"
+        >
+          Login
+        </li>
+        <li
+          *ngIf="isLoggedIn()"
+          nz-menu-item
+          nz-col
+          [nzSpan]="2"
+          [nzPush]="22"
+          (click)="logOut()"
+        >
+          Logout
+        </li>
+        <li
+          nz-menu-item
+          nz-col
+          [nzSpan]="2"
+          [nzPull]="2"
+          routerLink="info"
+          [nzSelected]="isInfoPage()"
+        >
+          Info
+        </li>
+        <li
+          *ngIf="isLoggedIn()"
+          nz-menu-item
+          nz-col
+          [nzSpan]="2"
+          [nzPull]="2"
+          routerLink="admin"
+          [nzSelected]="isAdminPage()"
+        >
+          Admin
+        </li>
       </ul>
     </nz-header>
     <nz-content>
